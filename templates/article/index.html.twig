@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'online_newspaper' | trans }}
+{% endblock %}
+
+{% block body %}
+    <main role="main" class="container-fluid">
+        <header>
+            <nav class="navbar">
+                <div class="logo"><a href=><img id="logo" src="{{ asset('img/logo.png') }}"></a></div>
+                <label for="input-hamburger" class="hamburger"></label>
+                <input type="checkbox" id="input-hamburger" hidden>
+                <ul class="menu">
+                    <li><a href=> Artykuły </a></li>
+                    <li><a href=> Dodaj artykuł </a></li>
+                    <li><a href=> Kategorie </a></li>
+                    <li><a href=> Dodaj kategorię </a></li>
+                    <li><a href=> Edycja danych administartora </a></li>
+                    <li><a href=>Admin</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="content">
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.id }}</td>
+                    <td>{{ article.createdAt|date('Y/m/d') }}</td>
+                    <td>{{ article.updatedAt|date('Y/m/d') }}</td>
+                    <td>{{ article.title }}</td>
+                </tr>
+            {% endfor %}
+        </div>
+        <footer>Copyright Magdalena Blicharz</footer>
+    </main>
+{% endblock %}
