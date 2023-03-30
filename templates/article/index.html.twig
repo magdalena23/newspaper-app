@@ -12,25 +12,68 @@
                 <label for="input-hamburger" class="hamburger"></label>
                 <input type="checkbox" id="input-hamburger" hidden>
                 <ul class="menu">
-                    <li><a href=> Artykuły </a></li>
-                    <li><a href=> Dodaj artykuł </a></li>
-                    <li><a href=> Kategorie </a></li>
-                    <li><a href=> Dodaj kategorię </a></li>
-                    <li><a href=> Edycja danych administartora </a></li>
+                    <li><a href=> {{ 'title_articles_list'|trans }} </a></li>
+                    <li><a href=> {{ 'title_articles_create'|trans }} </a></li>
+                    <li><a href=> {{ 'title_categories_list'|trans }} </a></li>
+                    <li><a href=> {{ 'title_categories_create'|trans }} </a></li>
+                    <li><a href=> {{ 'title_admin_edit'|trans }} </a></li>
                     <li><a href=>Admin</a></li>
                 </ul>
             </nav>
         </header>
         <div class="content">
-            {% for article in articles %}
-                <tr>
-                    <td>{{ article.id }}</td>
-                    <td>{{ article.createdAt|date('Y/m/d') }}</td>
-                    <td>{{ article.updatedAt|date('Y/m/d') }}</td>
-                    <td>{{ article.title }}</td>
-                </tr>
-            {% endfor %}
+{# {% if pagination is defined and pagination.items|length %}
+                {% for article in pagination.items %}
+                    <div id="element">
+                        {{ (pagination, 'label_id' | trans, article.id) }}<br>
+                        {{ (pagination, 'label_createdAt' | trans, article.createdAt|date('Y/m/d')) }}<br>
+                        {{ (pagination, 'label_updatedAt' | trans, article.updatedAt|date('Y/m/d')) }}<br>
+                        {{ (pagination, 'label_title' | trans, article.title) }}<br>
+                        <a href="{{ url('article_show', {id: article.id}) }}" title="{{ 'action.view'|trans }}">
+                            {{ (pagination, 'action.view'|trans) }}
+                        </a>
+                    </div>
+                {% endfor %}#}
+            {% if pagination is defined and pagination.items|length %}
+            <div class="table-responsive">
+                <table class="table {# table-bordered #}">
+                    <thead>
+                    <tr>
+                        <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'article.id') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'label_createdAt'|trans, 'article.createdAt') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'label_updatedAt'|trans, 'article.updatedAt') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'label_title'|trans, 'article.title') }}</th>
+                        <th>{{ 'label_category'|trans }}</th>
+                        <th>{{ 'label_actions'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for article in pagination.items %}
+                            <tr>
+                                <td>{{ article.id }}</td>
+                                <td>{{ article.createdAt|format_date('long') }}</td>
+                                <td>{{ article.updatedAt|format_date('long') }}</td>
+                                <td>{{ article.title }}</td>
+                                <td>{{ article.category.title }}</td>
+                                <td>
+                                    <a class="btn" href="{{ url('article_show', {id: article.id}) }}" title="{{ 'action_show'|trans }}" role="button">
+                                        {{ 'action_show'|trans }}
+                                    </a>
+                                </td>
+                            </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+                <div class="navigation text-center">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            {% else %}
+                <p>
+                    {{ 'message.empty_list'|trans }}
+                </p>
+            {% endif %}
         </div>
-        <footer>Copyright Magdalena Blicharz</footer>
+        <footer>Magdalena Blicharz</footer>
     </main>
 {% endblock %}

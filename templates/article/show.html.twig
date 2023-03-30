@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.article_details'|trans({'%id%': article.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+<main role="main" class="container-fluid">
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href=><img id="logo" src="{{ asset('img/logo.png') }}"></a></div>
+            <label for="input-hamburger" class="hamburger"></label>
+            <input type="checkbox" id="input-hamburger" hidden>
+            <ul class="menu">
+                <li><a href=> {{ 'title_articles_list'|trans }} </a></li>
+                <li><a href=> {{ 'title_articles_create'|trans }} </a></li>
+                <li><a href=> {{ 'title_categories_list'|trans }} </a></li>
+                <li><a href=> {{ 'title_categories_create'|trans }} </a></li>
+                <li><a href=> {{ 'title_admin_edit'|trans }} </a></li>
+                <li><a href=>Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        <h2>{{ 'title.article_details'|trans({'%id%': article.id|default('')}) }}</h2>
+            {% if article is defined and article|length %}
+                <dl>
+                    <dt>{{ 'label_id'|trans }}</dt>
+                    <dd>{{ article.id }}</dd>
+                    <dt>{{ 'label_createdAt'|trans }}</dt>
+                    <dd>{{ article.createdAt|format_date('long') }}</dd>
+                    <dt>{{ 'label_updatedAt'|trans }}</dt>
+                    <dd>{{ article.updatedAt|format_date('long') }}</dd>
+                    <dt>{{ 'label_category'|trans }}</dt>
+                    <dd>{{  article.title }}</dd>
+                    <dt>{{ 'label_title'|trans }}</dt>
+                    <dd>{{  article.category.title }}</dd>
+                    <dt>{{ 'label_content'|trans }}</dt>
+                    <dd>{{  article.content }}</dd>
+                </dl>
+                <p>
+                    <a class="btn" href="{{ url('article_index') }}" title="{{ 'action.back_to_list'|trans }}" role="button">
+                    {{ 'action.back_to_list'|trans }}
+                    </a>
+                </p>
+            {% else %}
+                <p>
+                    {{ 'message.record_not_found'|trans }}
+                </p>
+            {% endif %}
+    </div>
+    <footer>Magdalena Blicharz</footer>
+</main>
+{% endblock %}

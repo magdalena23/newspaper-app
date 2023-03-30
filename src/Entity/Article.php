@@ -6,7 +6,6 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use DateTimeImmutable;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,7 +50,7 @@ class Article
      *
      * @psalm-suppress PropertyNotSetInConstructor
      */
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $createdAt = null;
 
     /**
@@ -61,8 +60,19 @@ class Article
      *
      * @psalm-suppress PropertyNotSetInConstructor
      */
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $updatedAt = null;
+
+    /**
+     * Category.
+     *
+     * @var Category|null
+     *
+     * fetch="EXTRA_LAZY",
+     */
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
 
     /**
      * Getter for Id.
@@ -152,5 +162,25 @@ class Article
     public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * Getter for Category.
+     *
+     * @return Category|null Category
+     */
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    /**
+     * Setter for Category.
+     *
+     * @param Category|null $category Category
+     */
+    public function setCategory(?Category $category): void
+    {
+        $this->category = $category;
     }
 }

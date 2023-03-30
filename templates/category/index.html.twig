@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'online_newspaper' | trans }}
+{% endblock %}
+
+{% block body %}
+<main role="main" class="container-fluid">
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href=><img id="logo" src="{{ asset('img/logo.png') }}"></a></div>
+            <label for="input-hamburger" class="hamburger"></label>
+            <input type="checkbox" id="input-hamburger" hidden>
+            <ul class="menu">
+                <li><a href=> {{ 'title_articles_list'|trans }} </a></li>
+                <li><a href=> {{ 'title_articles_create'|trans }} </a></li>
+                <li><a href=> {{ 'title_categories_list'|trans }} </a></li>
+                <li><a href=> {{ 'title_categories_create'|trans }} </a></li>
+                <li><a href=> {{ 'title_admin_edit'|trans }} </a></li>
+                <li><a href=>Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content">
+        {% if pagination is defined and pagination.items|length %}
+            <div class="table-responsive">
+                <table class="table {# table-bordered #}">
+                    <thead>
+                    <tr>
+                        <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'category.id') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'label_createdAt'|trans, 'category.createdAt') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'label_updatedAt'|trans, 'category.updatedAt') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'label_title'|trans, 'category.title') }}</th>
+                        <th>{{ 'label_actions'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for category in pagination.items %}
+                        <tr>
+                            <td>{{ category.id }}</td>
+                            <td>{{ category.createdAt|format_date('long') }}</td>
+                            <td>{{ category.updatedAt|format_date('long') }}</td>
+                            <td>{{ category.title }}</td>
+                            <td>
+                                <a class="btn" href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action_show'|trans }}" role="button">
+                                    {{ 'action_show'|trans }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="navigation text-center">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        {% else %}
+            <p>
+                {{ 'message.empty_list'|trans }}
+            </p>
+        {% endif %}
+    </div>
+    <footer>Magdalena Blicharz</footer>
+</main>
+{% endblock %}
