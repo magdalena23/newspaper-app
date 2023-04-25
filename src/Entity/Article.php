@@ -68,9 +68,8 @@ class Article
      *
      * @var Category|null
      *
-     * fetch="EXTRA_LAZY",
      */
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'articles')]
+    #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
@@ -115,7 +114,7 @@ class Article
     }
 
     /**
-     * Setter for contet.
+     * Setter for content.
      *
      * @param string|null $content Content
      */

@@ -6,13 +6,14 @@
 namespace App\Service;
 
 use App\Repository\ArticleRepository;
+use App\Entity\Article;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * Class ArticleService.
  */
-class ArticleService
+class ArticleService implements ArticleServiceInterface
 {
     /**
      * Article repository.
@@ -50,5 +51,30 @@ class ArticleService
             $page,
             ArticleRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Article $article Article entity
+     */
+    public function save(Article $article): void
+    {
+        if (null == $article->getId()) {
+            $article->setCreatedAt(new \DateTimeImmutable());
+        }
+        $article->setUpdatedAt(new \DateTimeImmutable());
+
+        $this->articleRepository->save($article);
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Article $article Article entity
+     */
+    public function delete(Article $article): void
+    {
+        $this->articleRepository->delete($article);
     }
 }

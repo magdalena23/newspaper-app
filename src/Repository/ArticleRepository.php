@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -28,6 +29,11 @@ class ArticleRepository extends ServiceEntityRepository
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
+    /**
+     * Constructor.
+     *
+     * @param ManagerRegistry $registry Manager registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Article::class);
@@ -41,7 +47,10 @@ class ArticleRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('article', 'category')
+            ->select(
+                'partial article.{id, createdAt, updatedAt, title}',
+                'partial category.{id, title}'
+            )
             ->join('article.category', 'category')
             ->orderBy('article.updatedAt', 'DESC');
     }
@@ -58,22 +67,26 @@ class ArticleRepository extends ServiceEntityRepository
         return $queryBuilder ?? $this->createQueryBuilder('article');
     }
 
-    public function save(Article $entity, bool $flush = false): void
+    /**
+     * Save entity.
+     *
+     * @param Article $article Article entity
+     */
+    public function save(Article $article): void
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->persist($article);
+        $this->_em->flush();
     }
 
-    public function remove(Article $entity, bool $flush = false): void
+    /**
+     * Delete entity.
+     *
+     * @param Article $article Article entity
+     */
+    public function delete(Article $article): void
     {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->remove($article);
+        $this->_em->flush();
     }
 
 }
