@@ -12,11 +12,11 @@
                 <label for="input-hamburger" class="hamburger"></label>
                 <input type="checkbox" id="input-hamburger" hidden>
                 <ul class="menu">
-                    <li><a href=> {{ 'title_articles_list'|trans }} </a></li>
-                    <li><a href=> {{ 'title_articles_create'|trans }} </a></li>
-                    <li><a href=> {{ 'title_categories_list'|trans }} </a></li>
-                    <li><a href=> {{ 'title_categories_create'|trans }} </a></li>
-                    <li><a href=> {{ 'title_admin_edit'|trans }} </a></li>
+                    <li><a href=> {{ 'title.articles_list'|trans }} </a></li>
+                    <li><a href=> {{ 'title.article_create'|trans }} </a></li>
+                    <li><a href=> {{ 'title.categories_list'|trans }} </a></li>
+                    <li><a href=> {{ 'title.category_create'|trans }} </a></li>
+                    <li><a href=> {{ 'title.admin_edit'|trans }} </a></li>
                     <li><a href=>Admin</a></li>
                 </ul>
             </nav>
@@ -26,13 +26,13 @@
             <h2>{{ 'title.category_details'|trans({'%id%': category.id|default('')}) }}</h2>
             {% if category is defined and category|length %}
                 <dl>
-                    <dt>{{ 'label_id'|trans }}</dt>
+                    <dt>{{ 'label.id'|trans }}</dt>
                     <dd>{{ category.id }}</dd>
-                    <dt>{{ 'label_createdAt'|trans }}</dt>
+                    <dt>{{ 'label.createdAt'|trans }}</dt>
                     <dd>{{ category.createdAt|format_date('long') }}</dd>
-                    <dt>{{ 'label_updatedAt'|trans }}</dt>
+                    <dt>{{ 'label.updatedAt'|trans }}</dt>
                     <dd>{{ category.updatedAt|format_date('long') }}</dd>
-                    <dt>{{ 'label_category'|trans }}</dt>
+                    <dt>{{ 'label.category'|trans }}</dt>
                     <dd>{{ category.title }}</dd>
                 </dl>
                 <p>

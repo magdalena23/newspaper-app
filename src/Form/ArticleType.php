@@ -35,7 +35,7 @@ class ArticleType extends AbstractType
             'title',
             TextType::class,
             [
-                'label' => 'label_titile',
+                'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 120],
             ]
@@ -44,7 +44,7 @@ class ArticleType extends AbstractType
             'content',
             TextType::class,
             [
-                'label' => 'label_content',
+                'label' => 'label.content',
                 'required' => true,
                 'attr' => ['max_length' => 1020],
             ]
@@ -55,10 +55,10 @@ class ArticleType extends AbstractType
             [
                 'class' => Category::class,
                 'choice_label' => function ($category) {
-                    return $category->getName();
+                    return $category->getTitle();
                 },
-                'label' => 'label_category',
-                'placeholder' => 'label_none',
+                'label' => 'label.category',
+                'placeholder' => 'label.choose',
                 'required' => true,
             ]
         );

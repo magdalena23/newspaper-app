@@ -4,11 +4,11 @@
     <body>
       <trans-unit id="online_newspaper">
         <source>online_newspaper</source>
-        <target>Online newspaper</target>
+        <target>Gazeta internetowa</target>
       </trans-unit>
       <trans-unit id="label.actions">
         <source>label.actions</source>
-        <target>Actions</target>
+        <target>Akcje</target>
       </trans-unit>
       <trans-unit id="label.id">
         <source>label.id</source>
@@ -16,111 +16,111 @@
       </trans-unit>
       <trans-unit id="label.title">
         <source>label.title</source>
-        <target>Title</target>
+        <target>Tytuł</target>
       </trans-unit>
       <trans-unit id="label.content">
         <source>label.content</source>
-        <target>Content</target>
+        <target>Treść</target>
       </trans-unit>
       <trans-unit id="message.empty_list">
         <source>message.empty_list</source>
-        <target>List is empty.</target>
+        <target>Lista jest pusta</target>
       </trans-unit>
       <trans-unit id="message.record_not_found">
         <source>message.record_not_found</source>
-        <target>Record not found.</target>
+        <target>Nie odnaleziono rekordu</target>
       </trans-unit>
       <trans-unit id="message.created_successfully">
         <source>message.created_successfully</source>
-        <target>Created successfully</target>
+        <target>Utworzono pomyślnie</target>
       </trans-unit>
       <trans-unit id="message.deleted_successfully">
         <source>message.deleted_successfully</source>
-        <target>Deleted successfully</target>
+        <target>Usunięto pomyślnie</target>
       </trans-unit>
       <trans-unit id="message.updated_successfully">
         <source>message.updated_successfully</source>
-        <target>Updated successfully</target>
+        <target>Zaaktualizowano pomyślnie</target>
       </trans-unit>
       <trans-unit id="title.article_create">
         <source>title.article_create</source>
-        <target>Create article</target>
+        <target>Utwórz artykuł</target>
       </trans-unit>
       <trans-unit id="action.save">
         <source>action.save</source>
-        <target>Save</target>
+        <target>Zapisz</target>
       </trans-unit>
       <trans-unit id="action.back_to_list">
         <source>action.back_to_list</source>
-        <target>Back to list</target>
+        <target>Powrót do listy</target>
       </trans-unit>
       <trans-unit id="title.article_delete">
         <source>title.article_delete</source>
-        <target>Delete article</target>
+        <target>Usuń artykuł</target>
       </trans-unit>
       <trans-unit id="action.delete">
         <source>action.delete</source>
-        <target>Delete</target>
+        <target>Usuń</target>
       </trans-unit>
       <trans-unit id="title.article_edit">
         <source>title.article_edit</source>
-        <target>Edit article</target>
+        <target>Edytuj artykuł</target>
       </trans-unit>
       <trans-unit id="title.article_details">
         <source>title.article_details</source>
-        <target>Details of article #%id%</target>
+        <target>Szczegóły artykułu #%id%</target>
       </trans-unit>
       <trans-unit id="title.articles_list">
         <source>title.articles_list</source>
-        <target>Articles list</target>
+        <target>Lista artykułów</target>
       </trans-unit>
       <trans-unit id="title.categories_list">
         <source>title.categories_list</source>
-        <target>Categories list</target>
+        <target>Lista kategorii</target>
       </trans-unit>
       <trans-unit id="title.category_create">
         <source>title.category_create</source>
-        <target>Create category</target>
+        <target>Utwórz kategorię</target>
       </trans-unit>
       <trans-unit id="title.admin_edit">
         <source>title.admin_edit</source>
-        <target>Admin edit</target>
+        <target>Edycja danych administratora</target>
       </trans-unit>
       <trans-unit id="label.createdAt">
          <source>label.createdAt</source>
-         <target>Created</target>
+         <target>Utworzono</target>
       </trans-unit>
       <trans-unit id="label.updatedAt">
          <source>label.updatedAt</source>
-         <target>Updated</target>
+         <target>Zaaktualizowano</target>
       </trans-unit>
       <trans-unit id="label.category">
          <source>label.category</source>
-         <target>Category</target>
+         <target>Kategoria</target>
       </trans-unit>
       <trans-unit id="title.category_delete">
          <source>title.category_delete</source>
-         <target>Delete category</target>
+         <target>Usuń kategorii</target>
       </trans-unit>
       <trans-unit id="title.category_edit">
          <source>title.category_edit</source>
-         <target>Edit category</target>
+         <target>Edytuj kategorię</target>
       </trans-unit>
       <trans-unit id="action.show">
          <source>action.show</source>
-         <target>Show</target>
+         <target>Pokaż</target>
       </trans-unit>
       <trans-unit id="title.category_details">
          <source>title.category_details</source>
-         <target>Details of category #%id%</target>
+         <target>Szczegóły kategorii #%id%</target>
       </trans-unit>
       <trans-unit id="action.edit">
          <source>action.edit</source>
-         <target>Edit</target>
+         <target>Edytuj</target>
       </trans-unit>
       <trans-unit id="label.choose">
          <source>label.choose</source>
-         <target>--choose--</target>
+         <target>--wybierz--</target>
       </trans-unit>
     </body>
   </file>

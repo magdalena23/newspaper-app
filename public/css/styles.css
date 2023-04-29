@@ -39,16 +39,9 @@ header{
     width: 100%;
     padding: 15px;
 }
-/*#element{
-    background-color: #e6e6e6;
-    width: 48%;
-    height: auto;
-    padding: 10px;
-    margin: 10px;
-    display:inline-block;
-}*/
 .table{
     opacity: 0.8;
+    text-align: center;
     /*border-collapse: separate;
     border-spacing:0 5px;
     font-size: 16px;*/

@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use App\Service\ArticleService;
 use App\Service\ArticleServiceInterface;
@@ -152,7 +153,7 @@ class ArticleController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.created_successfully')
+                $this->translator->trans('message.updated_successfully')
             );
 
             return $this->redirectToRoute('article_index');
