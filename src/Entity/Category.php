@@ -8,6 +8,8 @@ use App\Repository\CategoryRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Category.
@@ -36,6 +38,9 @@ class Category
      * @var string|null
      */
     #[ORM\Column(type: 'string', length: 64)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 64)]
     private ?string $title;
 
     /**
@@ -44,6 +49,8 @@ class Category
      * @var DateTimeInterface|null
      */
     #[ORM\Column(type: 'datetime')]
+    #[Assert\Type(DateTimeInterface::class)]
+    #[Gedmo\Timestampable(on: 'create')]
     private ?DateTimeInterface $createdAt;
 
     /**
@@ -52,6 +59,8 @@ class Category
      * @var DateTimeInterface|null
      */
     #[ORM\Column(type: 'datetime')]
+    #[Assert\Type(DateTimeInterface::class)]
+    #[Gedmo\Timestampable(on: 'update')]
     private ?DateTimeInterface $updatedAt;
 
     /**

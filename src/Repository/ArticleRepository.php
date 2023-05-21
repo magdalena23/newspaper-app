@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Article;
 use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -87,6 +88,27 @@ class ArticleRepository extends ServiceEntityRepository
     {
         $this->_em->remove($article);
         $this->_em->flush();
+    }
+
+    /**
+     * Count articles by category.
+     *
+     * @param Category $category Category
+     *
+     * @return int Number of articles in category
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByCategory(Category $category): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('article.id'))
+            ->where('article.category = :category')
+            ->setParameter(':category', $category)
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 
 }

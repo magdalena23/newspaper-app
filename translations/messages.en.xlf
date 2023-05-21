@@ -122,6 +122,22 @@
          <source>label.choose</source>
          <target>--choose--</target>
       </trans-unit>
+      <trans-unit id="message.category_contains_articles">
+        <source>message.category_contains_articles</source>
+        <target>Category contains articles</target>
+      </trans-unit>
+      <trans-unit id="logout">
+        <source>logout</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="login">
+        <source>login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="message.form_error">
+        <source>message.form_error</source>
+        <target>Form error</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

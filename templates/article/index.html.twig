@@ -12,12 +12,20 @@
                 <label for="input-hamburger" class="hamburger"></label>
                 <input type="checkbox" id="input-hamburger" hidden>
                 <ul class="menu">
-                    <li><a href="{{ url('article_index') }}"> {{ 'title.articles_list'|trans }} </a></li>
-                    <li><a href="{{ url('article_create') }}"> {{ 'title.article_create'|trans }} </a></li>
-                    <li><a href="{{ url('category_index') }}"> {{ 'title.categories_list'|trans }} </a></li>
-                    <li><a href="{{ url('category_create') }}"> {{ 'title.category_create'|trans }} </a></li>
-                    <li><a href=> {{ 'title.admin_edit'|trans }} </a></li>
-                    <li><a href=>Admin</a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ url('article_index') }}"> {{ 'title.articles_list'|trans }} </a></li>
+                        <li><a href="{{ url('article_create') }}"> {{ 'title.article_create'|trans }} </a></li>
+                        <li><a href="{{ url('category_index') }}"> {{ 'title.categories_list'|trans }} </a></li>
+                        <li><a href="{{ url('category_create') }}"> {{ 'title.category_create'|trans }} </a></li>
+                        <li><a href=> {{ 'title.admin_edit'|trans }} </a></li>
+                    {% else %}
+                        <li><a href="{{ url('article_index') }}"> {{ 'title.articles_list'|trans }} </a></li>
+                    {% endif %}
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        <li><a href="{{ url('app_logout') }}">{{ 'logout'|trans }}</a></li>
+                    {% else %}
+                        <li><a href="{{ url('app_login') }}">{{ 'login'|trans }}</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </header>
@@ -31,7 +39,7 @@
                         <th>{{ knp_pagination_sortable(pagination, 'label.createdAt'|trans, 'article.createdAt') }}</th>
                         <th>{{ knp_pagination_sortable(pagination, 'label.updatedAt'|trans, 'article.updatedAt') }}</th>
                         <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'article.title') }}</th>
-                        <th>{{ 'label.category'|trans }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'category.title') }}</th>
                         <th>{{ 'label.actions'|trans }}</th>
                     </tr>
                     </thead>
@@ -44,15 +52,19 @@
                                 <td>{{ article.title }}</td>
                                 <td>{{ article.category.title }}</td>
                                 <td>
-                                    <a class="btn" href="{{ url('article_show', {id: article.id}) }}" title="{{ 'action.show'|trans }}" role="button">
+                                        <a class="btn" href="{{ url('article_show', {id: article.id}) }}" title="{{ 'action.show'|trans }}" role="button">
                                         {{ 'action.show'|trans }}
-                                    </a>
-                                    <a class="btn" href="{{ url('article_edit', {id: article.id}) }}" title="{{ 'action.edit'|trans }}" role="button">
-                                        {{ 'action.edit'|trans }}
-                                    </a>
-                                    <a class="btn" href="{{ url('article_delete', {id: article.id}) }}" title="{{ 'action.delete'|trans }}" role="button">
-                                        {{ 'action.delete'|trans }}
-                                    </a>
+                                        </a>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a class="btn" href="{{ url('article_edit', {id: article.id}) }}" title="{{ 'action.edit'|trans }}" role="button">
+                                            {{ 'action.edit'|trans }}
+                                        </a>
+                                    {% endif %}
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a class="btn" href="{{ url('article_delete', {id: article.id}) }}" title="{{ 'action.delete'|trans }}" role="button">
+                                            {{ 'action.delete'|trans }}
+                                        </a>
+                                    {% endif %}
                                 </td>
                             </tr>
                     {% endfor %}
@@ -63,9 +75,10 @@
                     {{ knp_pagination_render(pagination) }}
                 </div>
             {% else %}
-                <p>
-                    {{ 'message.empty_list'|trans }}
-                </p>
+                {% include 'default/_single_alert_message.html.twig' with {
+                    type: 'warning',
+                    message: 'message.empty_list'|trans
+                } %}
             {% endif %}
         </div>
         <footer>Magdalena Blicharz</footer>

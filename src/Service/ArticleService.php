@@ -60,11 +60,6 @@ class ArticleService implements ArticleServiceInterface
      */
     public function save(Article $article): void
     {
-        if (null == $article->getId()) {
-            $article->setCreatedAt(new \DateTimeImmutable());
-        }
-        $article->setUpdatedAt(new \DateTimeImmutable());
-
         $this->articleRepository->save($article);
     }
 

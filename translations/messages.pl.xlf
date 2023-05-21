@@ -100,7 +100,7 @@
       </trans-unit>
       <trans-unit id="title.category_delete">
          <source>title.category_delete</source>
-         <target>Usuń kategorii</target>
+         <target>Usuń kategorię</target>
       </trans-unit>
       <trans-unit id="title.category_edit">
          <source>title.category_edit</source>
@@ -119,8 +119,24 @@
          <target>Edytuj</target>
       </trans-unit>
       <trans-unit id="label.choose">
-         <source>label.choose</source>
-         <target>--wybierz--</target>
+        <source>label.choose</source>
+        <target>--wybierz--</target>
+      </trans-unit>
+      <trans-unit id="message.category_contains_articles">
+        <source>message.category_contains_articles</source>
+        <target>Kategoria zawiera artykuły</target>
+      </trans-unit>
+      <trans-unit id="logout">
+        <source>logout</source>
+        <target>Wyloguj</target>
+      </trans-unit>
+      <trans-unit id="login">
+        <source>login</source>
+        <target>Zaloguj się</target>
+      </trans-unit>
+      <trans-unit id="message.form_error">
+        <source>message.form_error</source>
+        <target>Błąd formularza</target>
       </trans-unit>
     </body>
   </file>

@@ -12,12 +12,20 @@
             <label for="input-hamburger" class="hamburger"></label>
             <input type="checkbox" id="input-hamburger" hidden>
             <ul class="menu">
-                <li><a href="{{ url('article_index') }}"> {{ 'title.articles_list'|trans }} </a></li>
-                <li><a href="{{ url('article_create') }}"> {{ 'title.article_create'|trans }} </a></li>
-                <li><a href="{{ url('category_index') }}"> {{ 'title.categories_list'|trans }} </a></li>
-                <li><a href="{{ url('category_create') }}"> {{ 'title.category_create'|trans }} </a></li>
-                <li><a href=> {{ 'title.admin_edit'|trans }} </a></li>
-                <li><a href=>Admin</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><a href="{{ url('article_index') }}"> {{ 'title.articles_list'|trans }} </a></li>
+                    <li><a href="{{ url('article_create') }}"> {{ 'title.article_create'|trans }} </a></li>
+                    <li><a href="{{ url('category_index') }}"> {{ 'title.categories_list'|trans }} </a></li>
+                    <li><a href="{{ url('category_create') }}"> {{ 'title.category_create'|trans }} </a></li>
+                    <li><a href=> {{ 'title.admin_edit'|trans }} </a></li>
+                {% else %}
+                    <li><a href="{{ url('article_index') }}"> {{ 'title.articles_list'|trans }} </a></li>
+                {% endif %}
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <li><a href="{{ url('app_logout') }}">{{ 'logout'|trans }}</a></li>
+                {% else %}
+                    <li><a href="{{ url('app_login') }}">{{ 'login'|trans }}</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
@@ -61,9 +69,10 @@
                 {{ knp_pagination_render(pagination) }}
             </div>
         {% else %}
-            <p>
-                {{ 'message.empty_list'|trans }}
-            </p>
+            {% include 'default/_single_alert_message.html.twig' with {
+                type: 'warning',
+                message: 'message.empty_list'|trans
+            } %}
         {% endif %}
     </div>
     <footer>Magdalena Blicharz</footer>
