@@ -90,6 +90,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * A visual identifier that represents this user.
      *
+     *
      * @return string User identifier
      *
      * @see UserInterface
@@ -100,6 +101,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Getter for user name
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
      * @return string Username
      */

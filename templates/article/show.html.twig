@@ -9,15 +9,13 @@
     <header>
         <nav class="navbar">
             <div class="logo"><a href=><img id="logo" src="{{ asset('img/logo.png') }}"></a></div>
-            <label for="input-hamburger" class="hamburger"></label>
-            <input type="checkbox" id="input-hamburger" hidden>
             <ul class="menu">
                 {% if is_granted('ROLE_ADMIN') %}
                     <li><a href="{{ url('article_index') }}"> {{ 'title.articles_list'|trans }} </a></li>
                     <li><a href="{{ url('article_create') }}"> {{ 'title.article_create'|trans }} </a></li>
                     <li><a href="{{ url('category_index') }}"> {{ 'title.categories_list'|trans }} </a></li>
                     <li><a href="{{ url('category_create') }}"> {{ 'title.category_create'|trans }} </a></li>
-                    <li><a href=> {{ 'title.admin_edit'|trans }} </a></li>
+                    <li><a href="{{ url('user_edit', {id: app.user.id}) }}"> {{ 'title.admin_edit'|trans }} </a></li>
                 {% else %}
                     <li><a href="{{ url('article_index') }}"> {{ 'title.articles_list'|trans }} </a></li>
                 {% endif %}
@@ -52,6 +50,42 @@
                     {{ 'action.back_to_list'|trans }}
                     </a>
                 </p>
+                <h2>{{'comments_label'|trans}}</h2>
+
+                    <div class="table" style="background-color: #D8D8D8 ;opacity:1">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>{{ 'label_id'|trans }}</th>
+                                <th>{{ 'label_nick'|trans }}</th>
+                                <th>{{ 'label_email'|trans }}</th>
+                                <th>{{ 'label_content'|trans }}</th>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <th>{{ 'label.actions'|trans }}</th>
+                                {% endif %}
+                            </tr>
+                            <div>
+
+                                    {% for comment in article.comment %}
+                                        <tr>
+                                            <td>{{ comment.id }}</td>
+                                            <td> {{ comment.userNick }} </td>
+                                            <td> {{ comment.userEmail }} </td>
+                                            <td> {{ comment.content }} </td>
+                                            {% if is_granted('ROLE_ADMIN') %}
+                                                <td><a class="btn btn-lg" href="{{ url('comment_delete', {id: comment.id}) }}"
+                                                       title="{{ 'delete'|trans }}"role="button">
+                                                        {{ 'delete'|trans }}
+                                                    </a></td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+
+                            </div>
+                        </table>
+                    </div>
+
+                <a class="btn btn-lg" href="{{ url('comment_create', {id: article.id}) }}" title="{{ 'comment_add'|trans }}" role="button">
+                    {{ 'comment_add'|trans }} </a>
             {% else %}
                 {% include 'default/_single_alert_message.html.twig' with {
                     type: 'warning',

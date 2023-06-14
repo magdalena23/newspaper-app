@@ -138,6 +138,85 @@
         <source>message.form_error</source>
         <target>Form error</target>
       </trans-unit>
+      <trans-unit id="message.data_edited_successfully">
+        <source>message.data_edited_successfully</source>
+        <target>Data edited successfully</target>
+      </trans-unit>
+      <trans-unit id="title.edit_password">
+        <source>title.edit_password</source>
+        <target>Edit data</target>
+      </trans-unit>
+      <trans-unit id="comments_label">
+        <source>comments_label</source>
+        <target>Comments</target>
+      </trans-unit>
+      <trans-unit id="label_id">
+        <source>label_id</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="label_nick">
+        <source>label_nick</source>
+        <target>User nick</target>
+      </trans-unit>
+      <trans-unit id="label_email">
+        <source>label_email</source>
+        <target>User email</target>
+      </trans-unit>
+      <trans-unit id="label_content">
+        <source>label_content</source>
+        <target>Comment content</target>
+      </trans-unit>
+      <trans-unit id="delete">
+        <source>delete</source>
+        <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="comment_add">
+        <source>comment_add</source>
+        <target>Add comment</target>
+      </trans-unit>
+      <trans-unit id="title.comment_create">
+        <source>title.comment_create</source>
+        <target>Create comment</target>
+      </trans-unit>
+      <trans-unit id=" title.comment_delete">
+        <source>title.comment_delete</source>
+        <target>Delete comment</target>
+      </trans-unit><trans-unit id="label_new_email">
+        <source>label_new_email</source>
+        <target>New email</target>
+      </trans-unit>
+      <trans-unit id="label_new_password">
+        <source>label_new_password</source>
+        <target>New password</target>
+      </trans-unit>
+      <trans-unit id="label_new_password_repeat">
+        <source>label_new_password_repeat</source>
+        <target>Repeat new password</target>
+      </trans-unit>
+      <trans-unit id="label.nick">
+        <source>label.nick</source>
+        <target>User nick</target>
+      </trans-unit>
+      <trans-unit id="label.email">
+        <source>label.email</source>
+        <target>User email</target>
+      </trans-unit>
+      <trans-unit id="label.contentt">
+        <source>label.contentt</source>
+        <target>Comment content</target>
+      </trans-unit>
+      <trans-unit id="title.sign_in">
+        <source>title.sign_in</source>
+        <target>Sign in</target>
+      </trans-unit>
+      <trans-unit id="title.email">
+        <source>title.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="title.password">
+        <source>title.password</source>
+        <target>Password</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

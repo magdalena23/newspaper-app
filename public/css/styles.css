@@ -32,6 +32,10 @@ header{
     padding: 16px 24px;
     font-size: 16px;
 }
+.menu li a:hover{
+    background-color: #CCCCCC;
+    color: #660000;
+}
 .content{
     background-image: url('zdjecie.png');
     color: black;
@@ -42,19 +46,11 @@ header{
 .table{
     opacity: 0.8;
     text-align: center;
-    /*border-collapse: separate;
-    border-spacing:0 5px;
-    font-size: 16px;*/
 }
 .table thead{
-    /*background-color: #ccccff;*/
-    /*background-color: #9999cc;*/
-    /*background-color: #BAA2A2;*/
     background-color: #CCCCCC;
 }
 .table tbody{
-    /*background-color: #e6e6e6;*/
-    /*background-color: #A8A8A8;*/
     background-color: #D8D8D8;
     color: black;
 }

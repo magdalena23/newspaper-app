@@ -13,7 +13,8 @@ parameters:
 {% endblock %}
 
 {% block body %}
-    <h1>{{ page_title }}</h1>
+    <h1 style="background-color: #660000; color:white; padding:20px">{{ page_title }}</h1>
+    <div class="formik" style="background-color: #CCCCCC; padding:15px">
     {{ form_start(form) }}
     {% if false == form.vars.valid %}
         {% include 'default/_single_alert_message.html.twig' with {
@@ -22,15 +23,15 @@ parameters:
         }%}
     {% endif %}
     {{ form_widget(form) }}
-    <div class="form-group row float-sm-right">
-        <input type="submit" value="{{ submit_label }}" class="btn btn-primary"/>
     </div>
+    <div class="form-group">
+        <input type="submit" value="{{ submit_label }}" class="btn" style="width:20%"/>
+
     {% if back_to_list_path|default(false) %}
-        <div class="form-group row float-sm-left">
-            <a href="{{ url(back_to_list_path) }}" class="btn btn-link">
+            <a href="{{ url(back_to_list_path) }}" class="btn" style="width:20%;">
                 {{ 'action.back_to_list'|trans }}
             </a>
-        </div>
+    </div>
     {% endif %}
     {{ form_end(form) }}
 {% endblock %}

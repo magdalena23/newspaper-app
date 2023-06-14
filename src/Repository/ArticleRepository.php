@@ -1,15 +1,21 @@
 <?php
-
+/**
+ * Article repository.
+ */
 namespace App\Repository;
 
 use App\Entity\Article;
 use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ *
+ * Class ArticleRepository.
+ *
  * @extends ServiceEntityRepository<Article>
  *
  * @method Article|null find($id, $lockMode = null, $lockVersion = null)
@@ -44,16 +50,20 @@ class ArticleRepository extends ServiceEntityRepository
      * Query all records.
      *
      * @return QueryBuilder Query builder
+     *
+     * @param array<string, object> $filters Filters
      */
-    public function queryAll(): QueryBuilder
+    public function queryAll(array $filters): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()
+        $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
                 'partial article.{id, createdAt, updatedAt, title}',
                 'partial category.{id, title}'
             )
             ->join('article.category', 'category')
             ->orderBy('article.updatedAt', 'DESC');
+
+        return $this->applyFiltersToList($queryBuilder, $filters);
     }
 
     /**
@@ -86,10 +96,17 @@ class ArticleRepository extends ServiceEntityRepository
      */
     public function delete(Article $article): void
     {
-        $this->_em->remove($article);
-        $this->_em->flush();
-    }
+        $entityManager = $this->getEntityManager();
 
+        // Usuń powiązane komentarze
+        $comments = $article->getComment();
+        foreach ($comments as $comment) {
+            $entityManager->remove($comment);
+        }
+
+        $entityManager->remove($article);
+        $entityManager->flush();
+    }
     /**
      * Count articles by category.
      *
@@ -109,6 +126,24 @@ class ArticleRepository extends ServiceEntityRepository
             ->setParameter(':category', $category)
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    /**
+     * Apply filters to paginated list.
+     *
+     * @param QueryBuilder          $queryBuilder Query builder
+     * @param array<string, object> $filters      Filters array
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
+    {
+        if (isset($filters['category']) && $filters['category'] instanceof Category) {
+            $queryBuilder->andWhere('category = :category')
+                ->setParameter('category', $filters['category']);
+        }
+
+        return $queryBuilder;
     }
 
 }

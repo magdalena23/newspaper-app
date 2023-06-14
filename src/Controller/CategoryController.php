@@ -8,7 +8,6 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Form\Type\CategoryType;
 use App\Repository\CategoryRepository;
-use App\Service\CategoryService;
 use App\Service\CategoryServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -40,12 +39,12 @@ class CategoryController extends AbstractController
     /**
      * Constructor.
      *
-     * @param CategoryServiceInterface $taskService Task service
+     * @param CategoryServiceInterface $categoryService Category service
      * @param TranslatorInterface      $translator  Translator
      */
-    public function __construct(CategoryServiceInterface $taskService, TranslatorInterface $translator)
+    public function __construct(CategoryServiceInterface $categoryService, TranslatorInterface $translator)
     {
-        $this->categoryService = $taskService;
+        $this->categoryService = $categoryService;
         $this->translator = $translator;
     }
 
@@ -58,6 +57,7 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route(
         name: 'category_index',
         methods: 'GET',
@@ -80,6 +80,7 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route(
         '/{id}',
         name: 'category_show',

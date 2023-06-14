@@ -9,15 +9,13 @@
         <header>
             <nav class="navbar">
                 <div class="logo"><a href=><img id="logo" src="{{ asset('img/logo.png') }}"></a></div>
-                <label for="input-hamburger" class="hamburger"></label>
-                <input type="checkbox" id="input-hamburger" hidden>
                 <ul class="menu">
                     {% if is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ url('article_index') }}"> {{ 'title.articles_list'|trans }} </a></li>
                         <li><a href="{{ url('article_create') }}"> {{ 'title.article_create'|trans }} </a></li>
                         <li><a href="{{ url('category_index') }}"> {{ 'title.categories_list'|trans }} </a></li>
                         <li><a href="{{ url('category_create') }}"> {{ 'title.category_create'|trans }} </a></li>
-                        <li><a href=> {{ 'title.admin_edit'|trans }} </a></li>
+                        <li><a href="{{ url('user_edit', {id: app.user.id}) }}"> {{ 'title.admin_edit'|trans }} </a></li>
                     {% else %}
                         <li><a href="{{ url('article_index') }}"> {{ 'title.articles_list'|trans }} </a></li>
                     {% endif %}
@@ -32,7 +30,7 @@
         <div class="content">
             {% if pagination is defined and pagination.items|length %}
             <div class="table-responsive">
-                <table class="table {# table-bordered #}">
+                <table class="table">
                     <thead>
                     <tr>
                         <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'article.id') }}</th>
@@ -50,7 +48,9 @@
                                 <td>{{ article.createdAt|format_date('long') }}</td>
                                 <td>{{ article.updatedAt|format_date('long') }}</td>
                                 <td>{{ article.title }}</td>
-                                <td>{{ article.category.title }}</td>
+                                <td><a href="{{ url('article_index', {'filters.category_id' : article.category.id}) }}" title="{{ article.category.title }}">
+                                        {{ article.category.title }}
+                                    </a></td>
                                 <td>
                                         <a class="btn" href="{{ url('article_show', {id: article.id}) }}" title="{{ 'action.show'|trans }}" role="button">
                                         {{ 'action.show'|trans }}

@@ -7,13 +7,10 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
-use App\Repository\ArticleRepository;
-use App\Service\ArticleService;
 use App\Service\ArticleServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -52,26 +49,25 @@ class ArticleController extends AbstractController
     /**
      * Index action.
      *
-     * @param Request            $request        HTTP Request
-     * @param ArticleRepository     $articleRepository Article repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param Request $request HTTP Request
      *
      * @return Response HTTP response
      */
     #[Route(
         name: 'article_index',
-        methods: 'GET',
+        methods: 'GET'
     )]
-    public function index(Request $request, ArticleRepository $articleRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $articleRepository->queryAll(),
+        $filters = $this->getFilters($request);
+        $pagination = $this->articleService->getPaginatedList(
             $request->query->getInt('page', 1),
-            ArticleRepository::PAGINATOR_ITEMS_PER_PAGE
+            $filters
         );
 
         return $this->render('article/index.html.twig', ['pagination' => $pagination]);
     }
+
 
     /**
      * Show action.
@@ -211,5 +207,22 @@ class ArticleController extends AbstractController
                 'article' => $article,
             ]
         );
+    }
+
+    /**
+     * Get filters from request.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return array<string, int> Array of filters
+     *
+     * @psalm-return array{category_id: int}
+     */
+    private function getFilters(Request $request): array
+    {
+        $filters = [];
+        $filters['category_id'] = $request->query->getInt('filters_category_id');
+
+        return $filters;
     }
 }

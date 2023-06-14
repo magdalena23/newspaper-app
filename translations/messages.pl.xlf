@@ -138,6 +138,85 @@
         <source>message.form_error</source>
         <target>Błąd formularza</target>
       </trans-unit>
+      <trans-unit id="message.data_edited_successfully">
+        <source>message.data_edited_successfully</source>
+        <target>Pomyślnie zaaktualizowano dane</target>
+      </trans-unit>
+      <trans-unit id="title.edit_password">
+        <source>title.edit_password</source>
+        <target>Edytuj dane</target>
+      </trans-unit>
+      <trans-unit id="comments_label">
+        <source>comments_label</source>
+        <target>Komentarze</target>
+      </trans-unit>
+      <trans-unit id="label_id">
+        <source>label_id</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="label_nick">
+        <source>label_nick</source>
+        <target>Nick użytkownika</target>
+      </trans-unit>
+      <trans-unit id="label_email">
+        <source>label_email</source>
+        <target>Email użytkownika</target>
+      </trans-unit>
+      <trans-unit id="label_content">
+        <source>label_content</source>
+        <target>Treść komentarza</target>
+      </trans-unit>
+      <trans-unit id="delete">
+        <source>delete</source>
+        <target>Usuń</target>
+      </trans-unit>
+      <trans-unit id="comment_add">
+        <source>comment_add</source>
+        <target>Dodaj komentarz</target>
+      </trans-unit>
+      <trans-unit id="title.comment_create">
+        <source>title.comment_create</source>
+        <target>Utwórz komentarz</target>
+      </trans-unit>
+      <trans-unit id=" title.comment_delete">
+        <source>title.comment_delete</source>
+        <target>Usuń komentarz</target>
+      </trans-unit><trans-unit id="label_new_email">
+        <source>label_new_email</source>
+        <target>Nowy email</target>
+      </trans-unit>
+      <trans-unit id="label_new_password">
+        <source>label_new_password</source>
+        <target>Nowe hasło</target>
+      </trans-unit>
+      <trans-unit id="label_new_password_repeat">
+        <source>label_new_password_repeat</source>
+        <target>Powtórz nowe hasło</target>
+      </trans-unit>
+      <trans-unit id="label.nick">
+        <source>label.nick</source>
+        <target>Nick użytkownika</target>
+      </trans-unit>
+      <trans-unit id="label.email">
+        <source>label.email</source>
+        <target>Email użytkownika</target>
+      </trans-unit>
+      <trans-unit id="label.contentt">
+        <source>label.contentt</source>
+        <target>Treść komentarza</target>
+      </trans-unit>
+      <trans-unit id="title.sign_in">
+        <source>title.sign_in</source>
+        <target>Zaloguj się</target>
+      </trans-unit>
+      <trans-unit id="title.email">
+        <source>title.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="title.password">
+        <source>title.password</source>
+        <target>Hasło</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

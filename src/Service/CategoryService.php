@@ -7,6 +7,7 @@ namespace App\Service;
 
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -23,6 +24,12 @@ class CategoryService implements CategoryServiceInterface
     private CategoryRepository $categoryRepository;
 
     /**
+     * Article repository.
+     */
+    public ArticleRepository $articleRepository;
+
+
+    /**
      * Paginator.
      */
     private PaginatorInterface $paginator;
@@ -31,11 +38,13 @@ class CategoryService implements CategoryServiceInterface
      * Constructor.
      *
      * @param CategoryRepository     $categoryRepository Category repository
+     * @param articleRepository     $articleRepository     Article repository
      * @param PaginatorInterface $paginator      Paginator
      */
-    public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator)
+    public function __construct(CategoryRepository $categoryRepository, ArticleRepository $articleRepository, PaginatorInterface $paginator)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->articleRepository = $articleRepository;
         $this->paginator = $paginator;
     }
 
@@ -90,5 +99,20 @@ class CategoryService implements CategoryServiceInterface
             return false;
         }
     }
+
+    /**
+     * Find by id.
+     *
+     * @param int $id Category id
+     *
+     * @return Category|null Category entity
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneById(int $id): ?Category
+    {
+        return $this->categoryRepository->findOneById($id);
+    }
+
 
 }
