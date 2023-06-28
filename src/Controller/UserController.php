@@ -1,23 +1,22 @@
 <?php
 /**
- * User Controller
+ * User Controller.
  */
 
 namespace App\Controller;
 
 use App\Entity\User;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Form\UserType;
 use App\Service\UserService;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * User Controller class.
@@ -31,26 +30,23 @@ class UserController extends AbstractController
     private UserService $userService;
 
     /**
-     * User Password Encoder Interface
-     *
-     * @var UserPasswordEncoderInterface
+     * User Password Encoder Interface.
      */
     private UserPasswordEncoderInterface $passwordEncoder;
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
     /**
      * Constructor.
      *
-     * @param UserService $userService UserService
-     * @param TranslatorInterface $translator TranslatorInterface
+     * @param UserService                  $userService     UserService
+     * @param UserPasswordEncoderInterface $passwordEncoder PasswordEncoder
+     * @param TranslatorInterface          $translator      TranslatorInterface
      */
-    public function __construct(UserService $userService, UserPasswordEncoderInterface $passwordEncoder,TranslatorInterface $translator)
+    public function __construct(UserService $userService, UserPasswordEncoderInterface $passwordEncoder, TranslatorInterface $translator)
     {
         $this->userService = $userService;
         $this->passwordEncoder = $passwordEncoder;
@@ -60,11 +56,11 @@ class UserController extends AbstractController
     /**
      * Change password action.
      *
-     * @param Request                     $request
-     * @param User                        $user
-     * @param UserPasswordHasherInterface $passwordHasher
+     * @param Request            $request        HTTP request
+     * @param User               $user           User
+     * @param UserPasswordHasher $passwordHasher UserPasswordHasher
      *
-     * @return Response
+     * @return Response HTTP response
      */
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'user_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
@@ -96,5 +92,4 @@ class UserController extends AbstractController
             ]
         );
     }
-
 }

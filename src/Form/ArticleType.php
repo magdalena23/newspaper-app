@@ -5,8 +5,8 @@
 
 namespace App\Form;
 
-use App\Entity\Category;
 use App\Entity\Article;
+use App\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -27,7 +27,7 @@ class ArticleType extends AbstractType
      * @see FormTypeExtensionInterface::buildForm()
      *
      * @param FormBuilderInterface $builder The form builder
-     * @param array                                        $options The options
+     * @param array                $options The options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

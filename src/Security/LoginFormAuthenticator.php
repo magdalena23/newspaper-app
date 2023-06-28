@@ -5,7 +5,6 @@
 
 namespace App\Security;
 
-use Exception;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,7 +57,6 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     /**
      * Does the authenticator support the given Request?
-     *
      * If this returns false, the authenticator will be skipped.
      *
      * @param Request $request HTTP request
@@ -73,12 +71,10 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     /**
      * Create a passport for the current request.
-     *
      * The passport contains the user, credentials and any additional information
      * that has to be checked by the Symfony Security system. For example, a login
      * form authenticator will probably return a passport containing the user, the
      * presented password and the CSRF token value.
-     *
      * You may throw any AuthenticationException in this method in case of error (e.g.
      * a UserNotFoundException when the user cannot be found).
      *
@@ -91,7 +87,6 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
-
         $request->getSession()->set(Security::LAST_USERNAME, $email);
 
         return new Passport(
@@ -105,10 +100,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     /**
      * Called when authentication executed and was successful!
-     *
      * This should return the Response sent back to the user, like a
      * RedirectResponse to the last page they visited.
-     *
      * If you return null, the current request will continue, and the user
      * will be authenticated. This makes sense, for example, with an API.
      *
@@ -118,7 +111,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
      *
      * @return Response|null HTTP response
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {

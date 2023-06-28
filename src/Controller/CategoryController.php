@@ -9,11 +9,11 @@ use App\Entity\Category;
 use App\Form\Type\CategoryType;
 use App\Repository\CategoryRepository;
 use App\Service\CategoryServiceInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
-use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -31,8 +31,6 @@ class CategoryController extends AbstractController
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -40,7 +38,7 @@ class CategoryController extends AbstractController
      * Constructor.
      *
      * @param CategoryServiceInterface $categoryService Category service
-     * @param TranslatorInterface      $translator  Translator
+     * @param TranslatorInterface      $translator      Translator
      */
     public function __construct(CategoryServiceInterface $categoryService, TranslatorInterface $translator)
     {
@@ -51,9 +49,9 @@ class CategoryController extends AbstractController
     /**
      * Index action.
      *
-     * @param Request            $request        HTTP Request
-     * @param CategoryRepository     $categoryRepository Category repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param Request            $request            HTTP Request
+     * @param CategoryRepository $categoryRepository Category repository
+     * @param PaginatorInterface $paginator          Paginator
      *
      * @return Response HTTP response
      */
@@ -101,8 +99,6 @@ class CategoryController extends AbstractController
      * @param Request $request HTTP request
      *
      * @return Response HTTP response
-     *
-     *
      */
     #[IsGranted('ROLE_ADMIN')]
     #[Route(
@@ -132,6 +128,7 @@ class CategoryController extends AbstractController
             ['form' => $form->createView()]
         );
     }
+
     /**
      * Edit action.
      *
@@ -139,7 +136,6 @@ class CategoryController extends AbstractController
      * @param Category $category Category entity
      *
      * @return Response HTTP response
-     *
      */
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
@@ -174,6 +170,7 @@ class CategoryController extends AbstractController
             ]
         );
     }
+
     /**
      * Delete action.
      *
@@ -181,13 +178,12 @@ class CategoryController extends AbstractController
      * @param Category $category Category entity
      *
      * @return Response HTTP response
-     *
      */
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Category $category): Response
     {
-        if(!$this->categoryService->canBeDeleted($category)) {
+        if (!$this->categoryService->canBeDeleted($category)) {
             $this->addFlash(
                 'warning',
                 $this->translator->trans('message.category_contains_articles')

@@ -35,5 +35,4 @@ interface ArticleServiceInterface
      * @param Article $article Article entity
      */
     public function delete(Article $article): void;
-
 }

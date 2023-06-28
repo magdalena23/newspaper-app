@@ -8,13 +8,11 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Form\Type\CommentType;
-use App\Repository\CommentRepository;
 use App\Service\CommentServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
-use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -32,8 +30,6 @@ class CommentController extends AbstractController
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -41,7 +37,7 @@ class CommentController extends AbstractController
      * Constructor.
      *
      * @param CommentServiceInterface $commentService Comment service
-     * @param TranslatorInterface $translator Translator
+     * @param TranslatorInterface     $translator     Translator
      */
     public function __construct(CommentServiceInterface $commentService, TranslatorInterface $translator)
     {
@@ -52,10 +48,10 @@ class CommentController extends AbstractController
     /**
      * Create action.
      *
-     * @param Request $request
-     * @param Article $article
+     * @param Request $request HTTP request
+     * @param Article $article Article entity
      *
-     * @return Response
+     * @return Response HTTP response
      */
     #[Route('/{id}/create', name: 'comment_create', requirements: ['id' => '[1-9]\d*'], methods: 'GET|POST')]
     public function create(Request $request, Article $article): Response

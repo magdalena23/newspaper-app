@@ -1,6 +1,6 @@
 <?php
 /**
- * UserSerivce
+ * User Service.
  */
 
 namespace App\Service;
@@ -18,11 +18,10 @@ class UserService implements UserServiceInterface
      */
     private UserRepository $userRepository;
 
-
     /**
      * Constructor.
      *
-     * @param UserRepository $userRepository UserRepository
+     * @param UserRepository $userRepository userRepository instance
      */
     public function __construct(UserRepository $userRepository)
     {
@@ -30,20 +29,19 @@ class UserService implements UserServiceInterface
     }
 
     /**
-     * Save entity.
+     * Save user entity.
      *
-     * @param User $user User entity
+     * @param User $user user entity
      */
     public function save(User $user): void
     {
         $this->userRepository->save($user);
     }
 
-
     /**
-     * Delete entity.
+     * Delete user entity.
      *
-     * @param User $user User entity
+     * @param User $user user entity
      */
     public function delete(User $user): void
     {

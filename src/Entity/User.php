@@ -1,6 +1,6 @@
 <?php
 /**
- * User entity
+ * User entity.
  */
 
 namespace App\Entity;
@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class User
+ * Class User.
  */
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'users')]
@@ -22,8 +22,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -32,8 +30,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Email.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 128, unique: true)]
     #[Assert\NotBlank]
@@ -50,12 +46,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Password.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
-    private ?string $password;
+    private ?string $password = null;
 
     /**
      * Getter for id.
@@ -90,7 +84,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * A visual identifier that represents this user.
      *
-     *
      * @return string User identifier
      *
      * @see UserInterface
@@ -101,8 +94,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Getter for user name
+     * Getter for user name.
+     *
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     *
      * @return string Username
      */
     public function getUsername(): string
@@ -120,7 +115,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = UserRole::ROLE_USER->value;
 
         return array_unique($roles);
@@ -139,7 +133,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for password.
      *
-     * @return string|null Password
+     * @return string Password
      *
      * @see PasswordAuthenticatedUserInterface
      */
@@ -162,7 +156,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
-     * @see UserInterface
+     * @return string|null Salt
      */
     public function getSalt(): ?string
     {

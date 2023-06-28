@@ -77,5 +77,4 @@ class CommentRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('comment');
     }
-
 }

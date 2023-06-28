@@ -7,11 +7,12 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Comment.
  *
- * @psalm-suppress MissingConstructor
+ * @psalm-suppress MissingConstructor.
  */
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 #[ORM\Table(name: 'comments')]
@@ -19,8 +20,6 @@ class Comment
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,41 +28,42 @@ class Comment
 
     /**
      * User nick.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 25)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 25)]
     private ?string $userNick = null;
 
     /**
      * User email.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 128)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 128)]
     private ?string $userEmail = null;
 
     /**
      * Content.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 1020)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 1020)]
     private ?string $content = null;
 
     /**
-     * Article
-     *
-     * @var Article|null
+     * Article.
      */
-    #[ORM\ManyToOne(inversedBy: 'comment')]
+    #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'comment')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Article $article = null;
-
 
     /**
      * Getter for Id.
      *
-     * @return int|null Id
+     * @return int|null id
      */
     public function getId(): ?int
     {
@@ -73,7 +73,7 @@ class Comment
     /**
      * Getter for user nick.
      *
-     * @return string|null User nick
+     * @return string|null user nick
      */
     public function getUserNick(): ?string
     {
@@ -83,7 +83,7 @@ class Comment
     /**
      * Setter for user nick.
      *
-     * @param string|null $userNick User nick
+     * @param string|null $userNick user nick
      */
     public function setUserNick(?string $userNick): void
     {
@@ -93,7 +93,7 @@ class Comment
     /**
      * Getter for user email.
      *
-     * @return string|null User email
+     * @return string|null user email
      */
     public function getUserEmail(): ?string
     {
@@ -103,7 +103,7 @@ class Comment
     /**
      * Setter for user email.
      *
-     * @param string|null $userEmail User email
+     * @param string|null $userEmail user email
      */
     public function setUserEmail(?string $userEmail): void
     {
@@ -113,7 +113,7 @@ class Comment
     /**
      * Getter for content.
      *
-     * @return string|null Content
+     * @return string|null content
      */
     public function getContent(): ?string
     {
@@ -123,7 +123,7 @@ class Comment
     /**
      * Setter for content.
      *
-     * @param string|null $content Content
+     * @param string|null $content content
      */
     public function setContent(?string $content): void
     {
@@ -131,9 +131,9 @@ class Comment
     }
 
     /**
-     * Getter for article
+     * Getter for article.
      *
-     * @return string|null Article
+     * @return Article|null article
      */
     public function getArticle(): ?Article
     {
@@ -143,7 +143,9 @@ class Comment
     /**
      * Setter for article.
      *
-     * @param string|null $article Article
+     * @param Article|null $article article
+     *
+     * @return $this
      */
     public function setArticle(?Article $article): self
     {
@@ -151,5 +153,4 @@ class Comment
 
         return $this;
     }
-
 }

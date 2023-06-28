@@ -1,6 +1,6 @@
 <?php
 /**
- * UserType
+ * UserType.
  */
 
 namespace App\Form;
@@ -8,9 +8,9 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -46,7 +46,6 @@ class UserType extends AbstractType
                 'second_options' => ['label' => 'label_new_password_repeat'],
             ]
         );
-
     }
 
     /**
@@ -71,5 +70,4 @@ class UserType extends AbstractType
     {
         return 'user';
     }
-
 }

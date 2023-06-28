@@ -2,14 +2,16 @@
 /**
  * Article entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
-use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Article.
@@ -22,8 +24,6 @@ class Article
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -32,67 +32,68 @@ class Article
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 120)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 120)]
     private ?string $title = null;
 
     /**
      * Content.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 1020)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 1020)]
     private ?string $content = null;
 
     /**
      * Created at.
      *
-     * @var DateTimeImmutable|null
+     * @var \DateTimeImmutable|null
      *
      * @psalm-suppress PropertyNotSetInConstructor
      */
     #[ORM\Column(type: 'datetime')]
+    #[Assert\Type(\DateTimeInterface::class)]
     #[Gedmo\Timestampable(on: 'create')]
     private ?\DateTimeInterface $createdAt = null;
 
     /**
      * Updated at.
      *
-     * @var DateTimeImmutable|null
+     * @var \DateTimeImmutable|null
      *
      * @psalm-suppress PropertyNotSetInConstructor
      */
     #[ORM\Column(type: 'datetime')]
+    #[Assert\Type(\DateTimeInterface::class)]
     #[Gedmo\Timestampable(on: 'update')]
     private ?\DateTimeInterface $updatedAt = null;
 
     /**
      * Category.
-     *
-     * @var Category|null
-     *
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
     /**
-     * Comment
+     * Comment.
+     *
      * @var Comment|null
      */
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Comment::class, cascade: ['remove'], orphanRemoval: true)]
     private Collection $comment;
 
     /**
-     * Array collections
+     * Array collections.
      */
     public function __construct()
     {
         $this->comment = new ArrayCollection();
     }
-
 
     /**
      * Getter for Id.
@@ -147,7 +148,7 @@ class Article
     /**
      * Getter for created at.
      *
-     * @return DateTimeImmutable|null Created at
+     * @return \DateTimeImmutable|null Created at
      */
     public function getCreatedAt(): ?\DateTimeInterface
     {
@@ -157,9 +158,9 @@ class Article
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable|null $createdAt Created at
+     * @param \DateTimeImmutable|null $createdAt Created at
      */
-    public function setCreatedAt(?DateTimeImmutable $createdAt): void
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
@@ -167,7 +168,7 @@ class Article
     /**
      * Getter for updated at.
      *
-     * @return DateTimeImmutable|null Updated at
+     * @return \DateTimeImmutable|null Updated at
      */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
@@ -177,9 +178,9 @@ class Article
     /**
      * Setter for updated at.
      *
-     * @param DateTimeImmutable|null $updatedAt Updated at
+     * @param \DateTimeImmutable|null $updatedAt Updated at
      */
-    public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
@@ -205,18 +206,19 @@ class Article
     }
 
     /**
-     * Getter for comment
+     * Getter for comment.
      *
      * @return Collection<int, Comment>
      */
-
     public function getComment(): Collection
     {
         return $this->comment;
     }
 
     /**
-     * @param Comment $comment
+     * Add comment.
+     *
+     * @param Comment $comment Comment
      *
      * @return $this
      */
@@ -231,7 +233,9 @@ class Article
     }
 
     /**
-     * @param Comment $comment
+     * Remove Comment.
+     *
+     * @param Comment $comment Comment
      *
      * @return $this
      */
@@ -246,5 +250,4 @@ class Article
 
         return $this;
     }
-
 }

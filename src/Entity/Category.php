@@ -2,6 +2,7 @@
 /**
  * Category entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
@@ -24,8 +25,6 @@ class Category
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -34,8 +33,6 @@ class Category
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Assert\Type('string')]
@@ -45,28 +42,24 @@ class Category
 
     /**
      * Created at.
-     *
-     * @var DateTimeInterface|null
      */
     #[ORM\Column(type: 'datetime')]
-    #[Assert\Type(DateTimeInterface::class)]
+    #[Assert\Type(\DateTimeInterface::class)]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?DateTimeInterface $createdAt;
+    private ?\DateTimeInterface $createdAt;
 
     /**
      * Updated at.
-     *
-     * @var DateTimeInterface|null
      */
     #[ORM\Column(type: 'datetime')]
-    #[Assert\Type(DateTimeInterface::class)]
+    #[Assert\Type(\DateTimeInterface::class)]
     #[Gedmo\Timestampable(on: 'update')]
-    private ?DateTimeInterface $updatedAt;
+    private ?\DateTimeInterface $updatedAt;
 
     /**
      * Getter for Id.
      *
-     * @return int|null Id
+     * @return int|null id
      */
     public function getId(): ?int
     {
@@ -76,7 +69,7 @@ class Category
     /**
      * Getter for title.
      *
-     * @return string|null Title
+     * @return string|null title
      */
     public function getTitle(): ?string
     {
@@ -86,7 +79,7 @@ class Category
     /**
      * Setter for title.
      *
-     * @param string|null $title Title
+     * @param string|null $title title
      */
     public function setTitle(?string $title): void
     {
@@ -96,9 +89,9 @@ class Category
     /**
      * Getter for created at.
      *
-     * @return DateTimeInterface|null Created at
+     * @return \DateTimeInterface|null created at
      */
-    public function getCreatedAt(): ?DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
@@ -106,20 +99,19 @@ class Category
     /**
      * Setter for created at.
      *
-     * @param DateTimeInterface|null $createdAt Created at
+     * @param \DateTimeInterface|null $createdAt created at
      */
-    public function setCreatedAt(?DateTimeInterface $createdAt): void
+    public function setCreatedAt(?\DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
-
     }
 
     /**
      * Getter for updated at.
      *
-     * @return DateTimeInterface|null Updated at
+     * @return \DateTimeInterface|null updated at
      */
-    public function getUpdatedAt(): ?DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
@@ -127,11 +119,10 @@ class Category
     /**
      * Setter for updated at.
      *
-     * @param DateTimeInterface|null $updatedAt Updated at
+     * @param \DateTimeInterface|null $updatedAt updated at
      */
-    public function setUpdatedAt(?DateTimeInterface $updatedAt): void
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
-
     }
 }

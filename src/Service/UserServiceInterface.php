@@ -1,6 +1,6 @@
 <?php
 /**
- * User Service Interface
+ * User Service Interface.
  */
 
 namespace App\Service;
@@ -25,5 +25,4 @@ interface UserServiceInterface
      * @param User $user User entity
      */
     public function delete(User $user): void;
-
 }

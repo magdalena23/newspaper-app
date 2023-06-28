@@ -2,6 +2,7 @@
 /**
  * Article repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\Article;
@@ -13,7 +14,6 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- *
  * Class ArticleRepository.
  *
  * @extends ServiceEntityRepository<Article>
@@ -30,6 +30,7 @@ class ArticleRepository extends ServiceEntityRepository
      *
      * Use constants to define configuration options that rarely change instead
      * of specifying them in configuration files.
+     *
      * See https://symfony.com/doc/current/best_practices.html#configuration
      *
      * @constant int
@@ -49,9 +50,9 @@ class ArticleRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
-     * @return QueryBuilder Query builder
-     *
      * @param array<string, object> $filters Filters
+     *
+     * @return QueryBuilder Query builder
      */
     public function queryAll(array $filters): QueryBuilder
     {
@@ -64,18 +65,6 @@ class ArticleRepository extends ServiceEntityRepository
             ->orderBy('article.updatedAt', 'DESC');
 
         return $this->applyFiltersToList($queryBuilder, $filters);
-    }
-
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('article');
     }
 
     /**
@@ -97,16 +86,15 @@ class ArticleRepository extends ServiceEntityRepository
     public function delete(Article $article): void
     {
         $entityManager = $this->getEntityManager();
-
         // Usuń powiązane komentarze
         $comments = $article->getComment();
         foreach ($comments as $comment) {
             $entityManager->remove($comment);
         }
-
         $entityManager->remove($article);
         $entityManager->flush();
     }
+
     /**
      * Count articles by category.
      *
@@ -129,6 +117,18 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
     /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('article');
+    }
+
+    /**
      * Apply filters to paginated list.
      *
      * @param QueryBuilder          $queryBuilder Query builder
@@ -145,5 +145,4 @@ class ArticleRepository extends ServiceEntityRepository
 
         return $queryBuilder;
     }
-
 }

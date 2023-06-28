@@ -5,9 +5,8 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Category;
 use App\Entity\Article;
-use DateTimeImmutable;
+use App\Entity\Category;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -33,10 +32,10 @@ class ArticleFixtures extends AbstractBaseFixtures implements DependentFixtureIn
             $article->setTitle($this->faker->sentence);
             $article->setContent($this->faker->text);
             $article->setCreatedAt(
-                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
+                \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
             );
             $article->setUpdatedAt(
-                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
+                \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
             );
             /** @var Category $category */
             $category = $this->getRandomReference('categories');

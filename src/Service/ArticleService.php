@@ -7,7 +7,6 @@ namespace App\Service;
 
 use App\Repository\ArticleRepository;
 use App\Entity\Article;
-use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -31,13 +30,12 @@ class ArticleService implements ArticleServiceInterface
      */
     private CategoryServiceInterface $categoryService;
 
-
     /**
      * Constructor.
      *
-     * @param ArticleRepository     $articleRepository Article repository
-     * @param PaginatorInterface $paginator      Paginator
-     * @param CategoryServiceInterface $categoryService Category service
+     * @param ArticleRepository        $articleRepository Article repository
+     * @param PaginatorInterface       $paginator         Paginator
+     * @param CategoryServiceInterface $categoryService   Category service
      */
     public function __construct(ArticleRepository $articleRepository, PaginatorInterface $paginator, CategoryServiceInterface $categoryService)
     {

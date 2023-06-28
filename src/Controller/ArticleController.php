@@ -9,9 +9,9 @@ use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Service\ArticleServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -29,8 +29,6 @@ class ArticleController extends AbstractController
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -38,7 +36,7 @@ class ArticleController extends AbstractController
      * Constructor.
      *
      * @param ArticleServiceInterface $articleService Article service
-     * @param TranslatorInterface      $translator  Translator
+     * @param TranslatorInterface     $translator     Translator
      */
     public function __construct(ArticleServiceInterface $articleService, TranslatorInterface $translator)
     {
@@ -68,7 +66,6 @@ class ArticleController extends AbstractController
         return $this->render('article/index.html.twig', ['pagination' => $pagination]);
     }
 
-
     /**
      * Show action.
      *
@@ -96,7 +93,6 @@ class ArticleController extends AbstractController
      * @param Request $request HTTP request
      *
      * @return Response HTTP response
-     *
      */
     #[IsGranted('ROLE_ADMIN')]
     #[Route(
@@ -130,11 +126,10 @@ class ArticleController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
+     * @param Request $request HTTP request
      * @param Article $article Article entity
      *
      * @return Response HTTP response
-     *
      */
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'article_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
@@ -173,11 +168,10 @@ class ArticleController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
+     * @param Request $request HTTP request
      * @param Article $article Article entity
      *
      * @return Response HTTP response
-     *
      */
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/delete', name: 'article_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]

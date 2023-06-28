@@ -1,6 +1,6 @@
 <?php
 /**
- * Comment service interface
+ * Comment service interface.
  */
 
 namespace App\Service;
