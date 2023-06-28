@@ -40,7 +40,7 @@
       </trans-unit>
       <trans-unit id="message.updated_successfully">
         <source>message.updated_successfully</source>
-        <target>Zaaktualizowano pomyślnie</target>
+        <target>Zaktualizowano pomyślnie</target>
       </trans-unit>
       <trans-unit id="title.article_create">
         <source>title.article_create</source>
@@ -92,7 +92,7 @@
       </trans-unit>
       <trans-unit id="label.updatedAt">
          <source>label.updatedAt</source>
-         <target>Zaaktualizowano</target>
+         <target>Zaktualizowano</target>
       </trans-unit>
       <trans-unit id="label.category">
          <source>label.category</source>
@@ -140,7 +140,7 @@
       </trans-unit>
       <trans-unit id="message.data_edited_successfully">
         <source>message.data_edited_successfully</source>
-        <target>Pomyślnie zaaktualizowano dane</target>
+        <target>Pomyślnie zaktualizowano dane</target>
       </trans-unit>
       <trans-unit id="title.edit_password">
         <source>title.edit_password</source>
