@@ -8,14 +8,15 @@
 <main role="main" class="container-fluid">
     <header>
         <nav class="navbar">
-            <div class="logo"><a href=><img id="logo" src="{{ asset('img/logo.png') }}"></a></div>
+            <div class="logo"><a href="{{ url('article_index') }}"><img id="logo" src="{{ asset('img/logo.png') }}"></a></div>
             <ul class="menu">
                 {% if is_granted('ROLE_ADMIN') %}
                     <li><a href="{{ url('article_index') }}"> {{ 'title.articles_list'|trans }} </a></li>
                     <li><a href="{{ url('article_create') }}"> {{ 'title.article_create'|trans }} </a></li>
                     <li><a href="{{ url('category_index') }}"> {{ 'title.categories_list'|trans }} </a></li>
                     <li><a href="{{ url('category_create') }}"> {{ 'title.category_create'|trans }} </a></li>
-                    <li><a href="{{ url('user_edit', {id: app.user.id}) }}"> {{ 'title.admin_edit'|trans }} </a></li>
+                    <li><a href="{{ url('user_edit', {id: app.user.id}) }}"> {{ 'title.edit_email'|trans }} </a></li>
+                    <li><a href="{{ url('user_edit_password', {id: app.user.id}) }}"> {{ 'title.edit_password'|trans }} </a></li>
                 {% else %}
                     <li><a href="{{ url('article_index') }}"> {{ 'title.articles_list'|trans }} </a></li>
                 {% endif %}

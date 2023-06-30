@@ -35,16 +35,6 @@ class UserType extends AbstractType
                 'attr' => ['max_length' => 128],
             ]
         );
-        $builder->add(
-            'password',
-            RepeatedType::class,
-            [
-                'required' => true,
-                'type' => PasswordType::class,
-                'first_options' => ['label' => 'label_new_password'],
-                'second_options' => ['label' => 'label_new_password_repeat'],
-            ]
-        );
     }
 
     /**

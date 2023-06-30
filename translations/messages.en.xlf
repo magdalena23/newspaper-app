@@ -144,7 +144,11 @@
       </trans-unit>
       <trans-unit id="title.edit_password">
         <source>title.edit_password</source>
-        <target>Edit data</target>
+        <target>Edit password</target>
+      </trans-unit>
+      <trans-unit id="title.edit_email">
+        <source>title.edit_email</source>
+        <target>Edit email</target>
       </trans-unit>
       <trans-unit id="comments_label">
         <source>comments_label</source>
