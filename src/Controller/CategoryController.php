@@ -163,7 +163,7 @@ class CategoryController extends AbstractController
         }
 
         return $this->render(
-            'category/edit_password.html.twig',
+            'category/edit.html.twig',
             [
                 'form' => $form->createView(),
                 'category' => $category,

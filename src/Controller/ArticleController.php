@@ -157,7 +157,7 @@ class ArticleController extends AbstractController
         }
 
         return $this->render(
-            'article/edit_password.html.twig',
+            'article/edit.html.twig',
             [
                 'form' => $form->createView(),
                 'article' => $article,

@@ -151,9 +151,14 @@ Search.appendIndex(
             "summary": "Constructor.",
             "url": "classes/App-Controller-UserController.html#method___construct"
         },                {
+            "fqsen": "\\App\\Controller\\UserController\u003A\u003AeditPassword\u0028\u0029",
+            "name": "editPassword",
+            "summary": "Change\u0020password\u0020action.",
+            "url": "classes/App-Controller-UserController.html#method_editPassword"
+        },                {
             "fqsen": "\\App\\Controller\\UserController\u003A\u003Aedit\u0028\u0029",
             "name": "edit",
-            "summary": "Change\u0020password\u0020action.",
+            "summary": "Change\u0020email\u0020action.",
             "url": "classes/App-Controller-UserController.html#method_edit"
         },                {
             "fqsen": "\\App\\Controller\\UserController\u003A\u003A\u0024userService",
@@ -1115,6 +1120,21 @@ Search.appendIndex(
             "name": "delete",
             "summary": "Delete\u0020entity.",
             "url": "classes/App-Service-UserServiceInterface.html#method_delete"
+        },                {
+            "fqsen": "\\App\\Form\\Type\\UserPasswordType",
+            "name": "UserPasswordType",
+            "summary": "Class\u0020PasswordType.",
+            "url": "classes/App-Form-Type-UserPasswordType.html"
+        },                {
+            "fqsen": "\\App\\Form\\Type\\UserPasswordType\u003A\u003AbuildForm\u0028\u0029",
+            "name": "buildForm",
+            "summary": "Build\u0020form.",
+            "url": "classes/App-Form-Type-UserPasswordType.html#method_buildForm"
+        },                {
+            "fqsen": "\\App\\Form\\Type\\UserPasswordType\u003A\u003AconfigureOptions\u0028\u0029",
+            "name": "configureOptions",
+            "summary": "Configure\u0020options.",
+            "url": "classes/App-Form-Type-UserPasswordType.html#method_configureOptions"
         },                {
             "fqsen": "\\",
             "name": "\\",

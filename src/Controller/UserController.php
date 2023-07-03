@@ -97,8 +97,8 @@ class UserController extends AbstractController
     /**
      * Change email action.
      *
-     * @param Request            $request        HTTP request
-     * @param User               $user           User
+     * @param Request $request HTTP request
+     * @param User    $user    User
      *
      * @return Response HTTP response
      */
@@ -112,7 +112,6 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->userService->save($user);
 
             $this->addFlash(

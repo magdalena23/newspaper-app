@@ -40,7 +40,6 @@ class CommentRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->orderBy('category.updatedAt', 'DESC')
             ->join('comment.article', 'article');
     }
 

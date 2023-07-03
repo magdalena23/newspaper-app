@@ -173,12 +173,10 @@ class ArticleControllerTest extends WebTestCase
 
         $categoryTitle = 'Test Category ' . uniqid();
 
-        // Create a test category
         $category = new Category();
         $category->setTitle($categoryTitle);
         $this->entityManager->persist($category);
 
-        // Create a test article
         $article = new Article();
         $article->setTitle('Test Article');
         $article->setContent('Content');
@@ -205,12 +203,10 @@ class ArticleControllerTest extends WebTestCase
 
         $categoryTitle = 'Test Category ' . uniqid();
 
-        // Create a test category
         $category = new Category();
         $category->setTitle($categoryTitle);
         $this->entityManager->persist($category);
 
-        // Create a test article
         $article = new Article();
         $article->setTitle('Test Article');
         $article->setContent('Content');
@@ -241,16 +237,14 @@ class ArticleControllerTest extends WebTestCase
 
         $categoryTitle = 'Test Category ' . uniqid();
 
-        // Create a test category
         $category = new Category();
         $category->setTitle($categoryTitle);
         $this->entityManager->persist($category);
 
-        // Create a test article
         $article = new Article();
         $article->setTitle('Test Article');
         $article->setContent('Content');
-        $article->setCategory($category); // Assign the category to the article
+        $article->setCategory($category);
         $this->entityManager->persist($article);
         $this->entityManager->flush();
 
@@ -273,16 +267,14 @@ class ArticleControllerTest extends WebTestCase
 
         $categoryTitle = 'Test Category ' . uniqid();
 
-        // Create a test category
         $category = new Category();
         $category->setTitle($categoryTitle);
         $this->entityManager->persist($category);
 
-        // Create a test article
         $article = new Article();
         $article->setTitle('Test Article');
         $article->setContent('Content');
-        $article->setCategory($category); // Przypisanie kategorii do artykułu
+        $article->setCategory($category);
         $this->entityManager->persist($article);
         $this->entityManager->flush();
 
@@ -306,16 +298,14 @@ class ArticleControllerTest extends WebTestCase
         $expectedStatusCode = 200;
         $categoryTitle = 'Test Category ' . uniqid();
 
-        // Create a test category
         $category = new Category();
         $category->setTitle($categoryTitle);
         $this->entityManager->persist($category);
 
-        // Create a test article
         $article = new Article();
         $article->setTitle('Test Article');
         $article->setContent('Content');
-        $article->setCategory($category); // Przypisanie kategorii do artykułu
+        $article->setCategory($category);
         $this->entityManager->persist($article);
         $this->entityManager->flush();
 
@@ -337,16 +327,14 @@ class ArticleControllerTest extends WebTestCase
         $expectedStatusCode = 302;
         $categoryTitle = 'Test Category ' . uniqid();
 
-        // Create a test category
         $category = new Category();
         $category->setTitle($categoryTitle);
         $this->entityManager->persist($category);
 
-        // Create a test article
         $article = new Article();
         $article->setTitle('Test Article');
         $article->setContent('Content');
-        $article->setCategory($category); // Przypisanie kategorii do artykułu
+        $article->setCategory($category);
         $this->entityManager->persist($article);
         $this->entityManager->flush();
 
@@ -356,7 +344,7 @@ class ArticleControllerTest extends WebTestCase
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
         // then
-        $this->assertEquals($expectedStatusCode, $resultStatusCode); // Sprawdzenie kodu statusu odpowiedzi
+        $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
 }
